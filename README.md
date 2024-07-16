@@ -9,7 +9,7 @@
 
 `git clone https://github.com/RAHUL14KUMAR/paymentSystem.git`
 
-## 2-> install the dependecies
+## 2-> install the dependencies
 
 run- `npm install`
 
