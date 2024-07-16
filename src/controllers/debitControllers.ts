@@ -89,10 +89,10 @@ const debitCardDetails=async(req: Request & { user?: any }, res: Response) => {
         message: "Payment details found successfully",
         payment:pay
     });
-    
+
 }
 
 module.exports={
     makePaymentViaDebitCard,
-    debitCardDetails
+    debitCardDetails  
 }
