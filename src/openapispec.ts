@@ -1,5 +1,3 @@
-import { stat } from "fs";
-
 export const openApi = {
   openapi: "3.0.0",
   info: {
