@@ -24,7 +24,7 @@ const makePaymentViaCreditCard = async (req: Request & { user?: any }, res: Resp
     const payments=new Payment({
         userId: _id,
         amount:amount,
-        status: 'initiated',
+        status: 'successfull',
         paymentMethod:{
             type:'credit_card',
             card_number:card_number,
