@@ -21,5 +21,5 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: check no issuw with typescript
+      - name: check no issue with typescript
         run: tsc -b
