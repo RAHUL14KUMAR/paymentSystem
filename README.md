@@ -11,14 +11,14 @@ takes 2 things
 
 `MONGO_URI` AND `SECRET_KEY`
 
-## 3-> clone the repository
+## 2-> clone the repository
 
 `git clone https://github.com/RAHUL14KUMAR/paymentSystem.git`
 
-## 4-> install the dependecies
+## 3-> install the dependecies
 
 run- `npm install`
 
-## start the server
+## 4-> start the server
 
 run `npm start`
