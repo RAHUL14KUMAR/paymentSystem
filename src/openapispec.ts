@@ -7,7 +7,7 @@ export const openApi = {
   },
   servers: [
     {
-      url: "https://paymentsystem-n5pd.onrender.com"
+      url: ["https://paymentsystem-n5pd.onrender.com","http://localhost:4005"],
     }
   ],
   security: [
