@@ -14,7 +14,7 @@ const paymentSchema=new schema({
     status: {
         type: String,
         required: true,
-        enum: ['initiated', 'authorized', 'captured', 'failed', 'refunded'],
+        enum: ['initiated', 'successfull', 'failed', 'refunded'],
     },
 
     paymentMethod:{
@@ -22,6 +22,8 @@ const paymentSchema=new schema({
         required:true,
         descriminatorKey:'type'
     }
+},{
+    timestamps: true
 })
 
 const creditCardSchema = new mongoose.Schema({
@@ -30,6 +32,9 @@ const creditCardSchema = new mongoose.Schema({
     cvv: { type: String, required: true },
     expiryDate: { type: String, required: true },
     cardHolderName: { type: String, required: true },
+    pendingAmount:{
+        type:Number,
+    }
 });
   
 const debitCardSchema = new mongoose.Schema({
@@ -47,3 +52,5 @@ const debitCardSchema = new mongoose.Schema({
   
 paymentSchema.discriminator('credit_card', creditCardSchema);
 paymentSchema.discriminator('debit_card', debitCardSchema);
+
+module.exports=mongoose.model('payments',paymentSchema)

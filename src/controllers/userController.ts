@@ -1,5 +1,5 @@
 const user=require('../model/userSchema');
-import express, { Request, Response as ExpressResponse } from 'express';
+import express, { Request, Response} from 'express';
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
 
@@ -16,7 +16,7 @@ const generateJwt = (id: string) => {
       expiresIn: "30d",
     });
 };
-const registerUser = async (req: Request, res: ExpressResponse) => {
+const registerUser = async (req: Request, res:Response) => {
     const { firstname, lastname, email, password } = req.body;
     if (!firstname || !lastname || !email || !password) {
         return res.status(400).json({ message: "please provide all the details" })
@@ -52,7 +52,7 @@ const registerUser = async (req: Request, res: ExpressResponse) => {
     }
 };
 
-const loginUser=async(req: Request, res: ExpressResponse)=>{
+const loginUser=async(req: Request, res: Response)=>{
     const {email,password}=req.body;
     if(!email ||!password){
         res.status(400).json({message:"please provide email and password"})
@@ -77,7 +77,7 @@ const loginUser=async(req: Request, res: ExpressResponse)=>{
     })
 }
 
-const updateUser=async(req: Request, res: ExpressResponse)=>{
+const updateUser=async(req: Request, res:Response)=>{
     const {username,firstname,lastname,newemail,newpassword}=req.body;
 
     if(!username ||!firstname ||!lastname ||!newemail ||!newpassword){

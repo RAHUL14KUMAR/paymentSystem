@@ -30,6 +30,7 @@ function main() {
         });
         app.use('/user', require('./routes/userRoutes'));
         app.use('/account', require('./routes/acountRoutes'));
+        app.use('/payment', require('./routes/paymentRoutes'));
         app.listen(port, () => {
             console.log(`Server is listening on port ${port}`);
         });

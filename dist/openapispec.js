@@ -307,6 +307,97 @@ exports.openApi = {
                     }
                 }
             }
+        },
+        "/payment/credit-cards": {
+            post: {
+                summary: "Payment using credit card",
+                description: "Endpoint to payment done by using credit card",
+                security: [{ bearerAuth: [] }],
+                requestBody: {
+                    required: true,
+                    content: {
+                        "application/json": {
+                            schema: {
+                                $ref: "#/components/schemas/paymentSchema"
+                            }
+                        }
+                    }
+                },
+                responses: {
+                    "201": {
+                        description: "Payment successfully",
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    $ref: "#/components/schemas/paymentResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        description: "Bad request - missing required fields"
+                    },
+                    "404": {
+                        description: "You have already made a payment of Rs.100000 please pay the bending bills first"
+                    },
+                    "500": {
+                        description: "Internal server error"
+                    }
+                }
+            }
+        },
+        "/payment/credit-card-details": {
+            get: {
+                summary: "Get user credit card details",
+                description: "Endpoint to get credit card details",
+                security: [{ bearerAuth: [] }],
+                responses: {
+                    "200": {
+                        description: "Credit card details retrieved successfully",
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    $ref: "#/components/schemas/creditCardDetailsResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        description: "Payment not found or no payment has been done by credit card"
+                    },
+                    "500": {
+                        description: "Internal server error"
+                    }
+                }
+            }
+        },
+        "/payment/credit-card/clear-dues": {
+            put: {
+                summary: "Clear credit card dues",
+                description: "Endpoint to clear credit card dues",
+                security: [{ bearerAuth: [] }],
+                responses: {
+                    "200": {
+                        description: "Credit card dues cleared successfully",
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    $ref: "#/components/schemas/creditCardDetailsResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        description: "Payment not found or no payment has been done by credit card"
+                    },
+                    "201": {
+                        description: "You have already cleared all the credit card dues"
+                    },
+                    "500": {
+                        description: "Internal server error"
+                    }
+                }
+            }
         }
     },
     components: {
@@ -425,6 +516,61 @@ exports.openApi = {
                     amount: { type: "number" },
                 },
                 required: ["amount"]
+            },
+            paymentSchema: {
+                type: "object",
+                properties: {
+                    amount: {
+                        type: "number"
+                    },
+                    cvv: {
+                        type: "string"
+                    },
+                    card_number: {
+                        type: "string"
+                    },
+                    expiryDate: {
+                        type: "string"
+                    }
+                },
+                required: ["amount", "cvv", "card_number", "expiryDate"]
+            },
+            paymentResponse: {
+                type: "object",
+                properties: {
+                    message: { type: "string" },
+                    payment: {
+                        type: "object",
+                        properties: {
+                            amount: { type: "number" },
+                            currency: { type: "string" },
+                            _id: { type: "string" },
+                            createdAt: { type: "string", format: "date-time" },
+                            updatedAt: { type: "string", format: "date-time" },
+                            __v: { type: "number" }
+                        }
+                    }
+                }
+            },
+            creditCardDetailsResponse: {
+                type: "array",
+                properties: {
+                    message: { type: "string" },
+                    creditCard: {
+                        type: "object",
+                        properties: {
+                            card_number: { type: "string" },
+                            cvv: { type: "string" },
+                            expiryDate: { type: "string" },
+                            cardHolderName: { type: "string" },
+                            pendingAmount: { type: "number" },
+                            _id: { type: "string" },
+                            createdAt: { type: "string", format: "date-time" },
+                            updatedAt: { type: "string", format: "date-time" },
+                            __v: { type: "number" }
+                        }
+                    }
+                }
             },
         },
         securitySchemes: {
