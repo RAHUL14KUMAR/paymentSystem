@@ -362,8 +362,11 @@ exports.openApi = {
                             }
                         }
                     },
+                    "201": {
+                        description: "no payment has been done by credit card"
+                    },
                     "404": {
-                        description: "Payment not found or no payment has been done by credit card"
+                        description: "Payment not found "
                     },
                     "500": {
                         description: "Internal server error"
@@ -392,6 +395,72 @@ exports.openApi = {
                     },
                     "201": {
                         description: "You have already cleared all the credit card dues"
+                    },
+                    "500": {
+                        description: "Internal server error"
+                    }
+                }
+            }
+        },
+        "/payment/debit-card": {
+            post: {
+                summary: "Payment using debit card",
+                description: "Endpoint to payment done by using debit card",
+                security: [{ bearerAuth: [] }],
+                requestBody: {
+                    required: true,
+                    content: {
+                        "application/json": {
+                            schema: {
+                                $ref: "#/components/schemas/paymentSchema"
+                            }
+                        }
+                    }
+                },
+                responses: {
+                    "201": {
+                        description: "Payment done successfully",
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    $ref: "#/components/schemas/creditCardDetailsResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        description: "Bad request - missing required fields"
+                    },
+                    "401": {
+                        description: "insufficient balance"
+                    },
+                    "404": {
+                        description: "Account not found"
+                    }
+                }
+            }
+        },
+        "/payment/debit-card-details": {
+            get: {
+                summary: "Get user debit card details",
+                description: "Endpoint to get debit card details",
+                security: [{ bearerAuth: [] }],
+                responses: {
+                    "200": {
+                        description: "Debit card details retrieved successfully",
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    $ref: "#/components/schemas/debitCardDetailsResponse"
+                                }
+                            }
+                        }
+                    },
+                    "201": {
+                        description: "no payment has been done by debit card"
+                    },
+                    "404": {
+                        description: "Payment not found "
                     },
                     "500": {
                         description: "Internal server error"
@@ -572,6 +641,42 @@ exports.openApi = {
                     }
                 }
             },
+            debitCardDetailsResponse: {
+                type: "object",
+                properties: {
+                    message: { type: "string" },
+                    payment: {
+                        type: "object",
+                        _id: { type: "string" },
+                        userId: {
+                            type: "object",
+                            properties: {
+                                "_id": { type: "string" },
+                                "username": { type: "string" },
+                                "email": { type: "string" },
+                                "firstname": { type: "string" },
+                                "lastname": { type: "string" },
+                                "password": { type: "string" },
+                            }
+                        },
+                        amount: { type: "number" },
+                        status: { type: "string" },
+                        paymentMethod: {
+                            type: "object",
+                            properties: {
+                                "_id": { type: "string" },
+                                "card_number": { type: "string" },
+                                "cvv": { type: "string" },
+                                "expiryDate": { type: "string" },
+                                "cardHolderName": { type: "string" },
+                                "bankDetails": { type: "string" }
+                            }
+                        },
+                        createdAt: { type: "string", format: "date-time" },
+                        updatedAt: { type: "string", format: "date-time" },
+                    }
+                }
+            }
         },
         securitySchemes: {
             bearerAuth: {

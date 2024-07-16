@@ -58,7 +58,11 @@ const creditCardDetails = (req, res) => __awaiter(void 0, void 0, void 0, functi
     const pay = yield Payment.find({ userId: _id,
         'paymentMethod.type': 'credit_card' });
     if (!pay) {
-        res.status(404).json({ message: "Payment not found or no payment has been done by credit card" });
+        res.status(404).json({ message: "Payment not found " });
+        return;
+    }
+    if (pay.length == 0) {
+        res.status(201).json({ message: "no payment has been done by credit card" });
         return;
     }
     res.status(200).json({
