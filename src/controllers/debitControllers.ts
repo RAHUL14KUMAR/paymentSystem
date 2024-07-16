@@ -94,6 +94,5 @@ const debitCardDetails=async(req: Request & { user?: any }, res: Response) => {
 
 module.exports={
     makePaymentViaDebitCard,
-    debitCardDetails
-    
+    debitCardDetails  
 }
