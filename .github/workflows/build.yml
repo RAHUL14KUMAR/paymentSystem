@@ -16,10 +16,10 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '13'
+          node-version: '16'
 
       - name: Install dependencies
         run: npm install
 
-      - name: check no issue with typescript
+      - name: Check TypeScript compilation
         run: tsc -b
