@@ -11,6 +11,7 @@ function extractTextBeforeAt(email:string):string{
     return email.slice(0, atIndex);
 }
 
+
 const generateJwt = (id: string) => {
     return jwt.sign({ id }, process.env.SECRET_KEY as jwt.Secret, {
       expiresIn: "30d",
