@@ -29,7 +29,7 @@ const makePaymentViaCreditCard = (req, res) => __awaiter(void 0, void 0, void 0,
     const payments = new Payment({
         userId: _id,
         amount: amount,
-        status: 'initiated',
+        status: 'successfull',
         paymentMethod: {
             type: 'credit_card',
             card_number: card_number,
