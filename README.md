@@ -5,20 +5,21 @@
 
 ## How To Start The System
 
-## 1-> add .env file in thwe root directory
+## 1-> clone the repository
+
+`git clone https://github.com/RAHUL14KUMAR/paymentSystem.git`
+
+## 2-> install the dependecies
+
+run- `npm install`
+
+
+## 3-> add .env file in the root directory
 
 takes 2 things
 
 `MONGO_URI` AND `SECRET_KEY`
 
-## 2-> clone the repository
-
-`git clone https://github.com/RAHUL14KUMAR/paymentSystem.git`
-
-## 3-> install the dependecies
-
-run- `npm install`
-
-## 4-> start the server
+##4-> start the server
 
 run `npm start`
