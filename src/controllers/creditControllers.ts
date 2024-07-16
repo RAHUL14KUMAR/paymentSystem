@@ -14,7 +14,7 @@ const makePaymentViaCreditCard = async (req: Request & { user?: any }, res: Resp
 
     // fetch the user credit card details and find the total pending amount
     const creditCardTotalAmount=await Payment.find({userId:_id,'paymentMethod.type': 'credit_card'})
-    const creditCardTotalAmountSum=creditCardTotalAmount.reduce((acc:number,curr:any)=>acc+curr.paymentMethod.pendingAmount,0)
+    const creditCardTotalAmountSum=creditCardTotalAmount.reduce((acc: number,curr:any)=>acc+curr.paymentMethod.pendingAmount,0)
 
     if(creditCardTotalAmountSum>=100000) {
         res.status(404).json({ message: "You have already made a payment of Rs.100000 please pay the bending bills first" });
