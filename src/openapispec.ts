@@ -1,3 +1,5 @@
+import { stat } from "fs";
+
 export const openApi = {
   openapi: "3.0.0",
   info: {
@@ -7,7 +9,7 @@ export const openApi = {
   },
   servers: [
     {
-      url: ["https://paymentsystem-n5pd.onrender.com","http://localhost:4005"],
+      url: "https://paymentsystem-n5pd.onrender.com"
     }
   ],
   security: [
