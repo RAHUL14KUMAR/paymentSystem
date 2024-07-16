@@ -20,6 +20,6 @@ takes 2 things
 
 `MONGO_URI` AND `SECRET_KEY`
 
-##4-> start the server
+## 4-> start the server
 
 run `npm start`
