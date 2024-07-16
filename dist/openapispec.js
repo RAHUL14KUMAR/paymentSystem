@@ -10,7 +10,12 @@ exports.openApi = {
     },
     servers: [
         {
-            url: "http://localhost:4005"
+            url: "https://paymentsystem-n5pd.onrender.com",
+            description: "Production server"
+        },
+        {
+            url: "http://localhost:4005",
+            description: "Local development server"
         }
     ],
     security: [
