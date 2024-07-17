@@ -228,7 +228,7 @@ export const openApi = {
         }
       },
       put:{
-        summary: "Update account details",
+        summary: "add amount to account",
         description: "Endpoint to update account details",
         security: [{ bearerAuth: [] }],
         parameters: [{
@@ -267,7 +267,7 @@ export const openApi = {
         }
       },
       patch:{
-        summary:"Update account details",
+        summary:"withdraw amount from account",
         description:"Endpoint to update account details",
         security: [{ bearerAuth: [] }],
         parameters: [{
